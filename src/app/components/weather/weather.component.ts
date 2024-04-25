@@ -9,7 +9,8 @@ import { WeatherService } from '../../shared/services/weather.service';
 })
 export class WeatherComponent implements OnInit {
   weatherData?: any;
-  city: string = 'Riojalandia';  // Puedes establecer una ciudad predeterminada o hacerla configurable
+  isLoading = true;  // Añadir un indicador de carga
+  errorMessage = '';  // Mensaje de error
 
   constructor(private weatherService: WeatherService) {}
 
@@ -18,12 +19,15 @@ export class WeatherComponent implements OnInit {
   }
 
   loadWeather() {
-    this.weatherService.getWeather(this.city).subscribe({
+    this.weatherService.getWeather('Riojalandia').subscribe({
       next: (data) => {
         this.weatherData = data;
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Failed to get weather data:', err);
+        this.isLoading = false;
+        this.errorMessage = 'Pendiente obtener información del clima';  // Configurar mensaje de error
       }
     });
   }

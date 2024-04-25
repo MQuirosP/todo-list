@@ -1,4 +1,7 @@
-<div *ngIf="weatherData">
+<!-- weather.component.html -->
+<div *ngIf="isLoading">Cargando datos del clima...</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+<div *ngIf="weatherData && !isLoading">
   <h3>Weather in {{ weatherData.name }}</h3>
   <p>Temperature: {{ weatherData.main.temp }} °C</p>
   <p>Weather: {{ weatherData.weather[0].main }}</p>

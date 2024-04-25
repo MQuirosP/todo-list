@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { Task } from 'src/app/shared/interfaces';
 import { DateService } from 'src/app/shared/services/date.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { DateService } from 'src/app/shared/services/date.service';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   newTask: string | undefined;
-  tasks: { title: string, completed: boolean, date: Date }[] = [];
+  tasks: Task[] = [];
   showSidebar: boolean = true;
   showSecondSidebar: boolean = true;
   selectedDate: Date | null = null;;

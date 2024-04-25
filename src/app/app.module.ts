@@ -17,6 +17,7 @@ import { PermanentCalendarComponent } from './components/permanent-calendar/perm
 import { FormatDatePipe } from './shared/pipes/format-date.pipe';
 import { WeatherComponent } from './components/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     TodoListComponent,
     PermanentCalendarComponent,
     FormatDatePipe,
-    WeatherComponent  // Asegúrate de que AppComponent está aquí
+    WeatherComponent,
+    SettingsComponent  // Asegúrate de que AppComponent está aquí
   ],
   imports: [
     BrowserModule,
