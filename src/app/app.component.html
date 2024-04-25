@@ -1,3 +1,4 @@
+<!-- app.component.html -->
 <div class="app-container" fxLayout="column" style="min-height: 100vh">
   <header fxLayout="row" fxLayoutAlign="center center" class="app-header">
     <h1><mat-icon>calendar_today</mat-icon>&nbsp;Organizador personal</h1>
@@ -5,9 +6,9 @@
 
   <div fxLayout="row" fxFlex style="overflow: hidden">
     <aside
-    [ngStyle]="{ width: showSidebar ? '20%' : '48px' }"
-      fxLayout="column"
+      [style.width]="showSidebar ? '20%' : '3%'"
       class="app-aside"
+      fxLayout="column"
     >
       <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
         <mat-icon>menu</mat-icon>
@@ -20,15 +21,14 @@
     </aside>
 
     <!-- Contenido principal -->
-    <div [ngStyle]="{width: showSidebar ? '60%': '80%' }">
+    <div fxFlex>
       <router-outlet></router-outlet>
     </div>
 
-    <!-- Segundo sidebar, calendario -->
+    <!-- Segundo sidebar, calendario y clima -->
     <aside
-    [ngStyle]="{width: showSidebar ? '20%': '40%' }"
       *ngIf="showSecondSidebar"
-      fxFlex="20"
+      fxFlex="20%"
       class="app-aside"
       fxLayout="column"
     >
