@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Asegura que padding y border están incluidos en el ancho total */
+  }
+  
+  .app-header, .app-footer {
+    padding: 20px;
+    background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    color: white;
+  }
+  
+  .app-header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    
+  }
+  
+ /* styles.css */
+
+
+  
+  .app-main {
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  

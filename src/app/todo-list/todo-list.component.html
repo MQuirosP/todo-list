@@ -1,0 +1,86 @@
+<!-- app.component.html -->
+<div class="app-container" fxLayout="column" style="min-height: 100vh">
+  <header fxLayout="row" fxLayoutAlign="center center" class="app-header">
+    <h1><mat-icon>calendar_today</mat-icon>&nbsp;Organizador personal</h1>
+  </header>
+
+  <div fxLayout="row" fxFlex style="overflow: hidden">
+    <!-- Primer sidebar que se muestra/oculta, ajustado para cambiar de ancho -->
+    <!-- app.component.html -->
+    <!-- app.component.html -->
+    <aside
+      [ngStyle]="{ width: showSidebar ? '400px' : '48px' }"
+      fxLayout="column"
+      class="app-aside"
+    >
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div *ngIf="showSidebar" fxLayout="column" fxLayoutAlign="start start">
+        <h2>Opciones</h2>
+        <button mat-button>Configuración</button>
+        <button mat-button>Perfil</button>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main fxFlex="80" class="app-main">
+      <mat-card>
+        <mat-card-title>Tu lista de tareas</mat-card-title>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Agregar nueva tarea</mat-label>
+            <input
+              matInput
+              placeholder="Escribe una nueva tarea"
+              [(ngModel)]="newTask"
+              (keyup.enter)="addTask()"
+            />
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addTask()">
+            Agregar
+          </button>
+
+          <mat-list>
+            <mat-list-item *ngFor="let task of tasks; let i = index">
+              <mat-checkbox
+                [(ngModel)]="task.completed"
+                style="padding: 0 70px 0 0"
+                >{{ task.title }}</mat-checkbox
+              >
+              <button
+                mat-icon-button
+                aria-label="Edit task"
+                (click)="editTask(i)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                aria-label="Delete task"
+                (click)="deleteTask(i)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </main>
+
+    <!-- Segundo sidebar, actualmente vacío pero listo para usar -->
+    <aside
+      *ngIf="showSecondSidebar"
+      fxFlex="20"
+      class="app-aside"
+      fxLayout="column"
+    >
+      <!-- Contenido adicional aquí si es necesario -->
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer fxLayout="row" fxLayoutAlign="center center" class="app-footer">
+    <span>© 2024 Mario Quirós Pizarro</span>
+  </footer>
+</div>

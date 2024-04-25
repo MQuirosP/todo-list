@@ -3,11 +3,11 @@ import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class TodoListComponent implements OnDestroy {
   newTask: string | undefined;
   tasks: { title: string, completed: boolean }[] = [];
   showSidebar: boolean = true;
