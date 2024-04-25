@@ -1,8 +1,44 @@
 <div class="app-container" fxLayout="column" style="min-height: 100vh">
-  <!-- Header, sidebar, etc. -->
+  <header fxLayout="row" fxLayoutAlign="center center" class="app-header">
+    <h1><mat-icon>calendar_today</mat-icon>&nbsp;Organizador personal</h1>
+  </header>
 
-  <!-- Insertar TodoListComponent -->
-  <app-todo-list></app-todo-list>
+  <div fxLayout="row" fxFlex style="overflow: hidden">
+    <aside
+    [ngStyle]="{ width: showSidebar ? '20%' : '48px' }"
+      fxLayout="column"
+      class="app-aside"
+    >
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div *ngIf="showSidebar" fxLayout="column" fxLayoutAlign="start start">
+        <h2>Opciones</h2>
+        <button mat-button routerLink="/settings">Configuración</button>
+        <button mat-button>Perfil</button>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div [ngStyle]="{width: showSidebar ? '60%': '80%' }">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Segundo sidebar, calendario -->
+    <aside
+    [ngStyle]="{width: showSidebar ? '20%': '40%' }"
+      *ngIf="showSecondSidebar"
+      fxFlex="20"
+      class="app-aside"
+      fxLayout="column"
+    >
+      <app-permanent-calendar></app-permanent-calendar>
+      <app-weather></app-weather>
+    </aside>
+  </div>
 
   <!-- Footer -->
+  <footer fxLayout="row" fxLayoutAlign="center center" class="app-footer">
+    <span>© 2024 Mario Quirós Pizarro</span>
+  </footer>
 </div>

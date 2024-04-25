@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,7 +43,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
 
   ],
   providers: [

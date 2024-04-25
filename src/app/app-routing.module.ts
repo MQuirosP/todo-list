@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from './components/settings/settings.component';
-import { AppComponent } from './app.component'; // Asumiendo que es tu componente principal
+import { TodoListComponent } from './components/todo-list/todo-list.component'; // Asegúrate de importar TodoListComponent
 
 const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
-  { path: '', component: AppComponent, pathMatch: 'full' }
+  { path: 'todos', component: TodoListComponent },  // Ruta para TodoListComponent
+  { path: '', redirectTo: '/todos', pathMatch: 'full' }  // Redirecciona la ruta raíz a TodoListComponent
 ];
 
 @NgModule({
