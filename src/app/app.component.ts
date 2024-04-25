@@ -12,6 +12,7 @@ export class AppComponent implements OnDestroy {
   tasks: { title: string, completed: boolean }[] = [];
   showSidebar: boolean = true;
   showSecondSidebar: boolean = true;
+  isMobile: boolean = false;
   private mediaSub: Subscription;
 
   constructor(private mediaObserver: MediaObserver) {
@@ -19,10 +20,11 @@ export class AppComponent implements OnDestroy {
   }
 
   handleMediaChange = (changes: MediaChange[]) => {
-    const matchMobile = changes.some(change => change.mqAlias === 'xs' || change.mqAlias === 'sm');
-    this.showSidebar = !matchMobile;
-    this.showSecondSidebar = !matchMobile;
+    this.isMobile = changes.some(change => change.mqAlias === 'xs' || change.mqAlias === 'sm');
+    this.showSidebar = !this.isMobile;
+    this.showSecondSidebar = !this.isMobile;
   };
+
 
   addTask() {
     if (this.newTask) {

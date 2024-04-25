@@ -1,5 +1,6 @@
+// settings.component.ts
 import { Component } from '@angular/core';
-import { DataService } from '../../shared/services/data.service';
+import { WeatherService } from '../../shared/services/weather.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,16 +8,14 @@ import { DataService } from '../../shared/services/data.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
-  currentLocation: string = '';
+  currentLocation: string = 'Barranca';
 
-  constructor(private dataService: DataService) {
-    this.dataService.appState$.subscribe(state => {
-      this.currentLocation = state.location;
-    });
+  constructor(private weatherService: WeatherService) {
+    this.weatherService.city$.subscribe(city => this.currentLocation = city);
   }
 
   updateLocation() {
-    this.dataService.updateLocation(this.currentLocation);
-    this.dataService.saveAppState();  // Guardar el estado actualizado
+    this.weatherService.setCity(this.currentLocation);
   }
 }
+

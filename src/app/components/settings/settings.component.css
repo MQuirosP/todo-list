@@ -1,0 +1,15 @@
+.app-main {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%; /* Asegúrate de que el campo de texto utilice todo el espacio disponible */
+    margin-bottom: 20px; /* Espacio entre el campo de texto y el botón */
+  }
+  
+  button {
+    width: auto; /* O define un ancho específico si lo prefieres */
+  }

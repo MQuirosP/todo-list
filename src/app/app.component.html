@@ -6,10 +6,10 @@
 
   <div fxLayout="row" fxFlex style="overflow: hidden">
     <aside
-      [style.width]="showSidebar ? '20%' : '3%'"
-      class="app-aside"
-      fxLayout="column"
-    >
+    [style.width]="showSidebar ? (isMobile ? '80%' : '20%') : '3%'"
+    class="app-aside"
+    fxLayout="column">
+    
       <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>

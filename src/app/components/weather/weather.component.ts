@@ -9,17 +9,24 @@ import { WeatherService } from '../../shared/services/weather.service';
 })
 export class WeatherComponent implements OnInit {
   weatherData?: any;
-  isLoading = true;  // Añadir un indicador de carga
-  errorMessage = '';  // Mensaje de error
+  isLoading = true;
+  errorMessage = '';
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
-    this.loadWeather();
+    this.weatherService.city$.subscribe({
+      next: (city) => {
+        this.loadWeather(city);
+      },
+      error: (err) => {
+        console.error('Error while getting city:', err);
+      }
+    });
   }
 
-  loadWeather() {
-    this.weatherService.getWeather('Riojalandia').subscribe({
+  loadWeather(city: string) {
+    this.weatherService.getWeather(city).subscribe({
       next: (data) => {
         this.weatherData = data;
         this.isLoading = false;
@@ -27,7 +34,7 @@ export class WeatherComponent implements OnInit {
       error: (err) => {
         console.error('Failed to get weather data:', err);
         this.isLoading = false;
-        this.errorMessage = 'Pendiente obtener información del clima';  // Configurar mensaje de error
+        this.errorMessage = 'Pendiente obtener información del clima';
       }
     });
   }

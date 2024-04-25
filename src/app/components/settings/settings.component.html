@@ -1,3 +1,14 @@
-<!-- settings.component.html -->
-<input type="text" [(ngModel)]="currentLocation">
-<button (click)="updateLocation()">Guardar Configuración</button>
+<!-- Supongamos que esto está en tu componente de configuración u otro componente -->
+<div class="app-main">
+  <button mat-raised-button color="accent" routerLink="/todos">
+    Tareas
+  </button>
+  <mat-form-field appearance="fill">
+    <mat-label>Localidad</mat-label>
+    <input matInput [(ngModel)]="currentLocation" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="updateLocation()">
+    Guardar Configuración
+  </button>
+  <!-- Botón para volver a la página principal o a la lista de todos usando routerLink -->
+</div>

@@ -21,7 +21,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private mediaObserver: MediaObserver,
-    private dateService: DateService,  
+    private dateService: DateService, 
   ) {
     this.mediaSub = this.mediaObserver.asObservable().subscribe(this.handleMediaChange);
     this.dateSubscription.add(this.dateService.selectedDate.subscribe(date => {
