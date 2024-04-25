@@ -9,13 +9,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
-import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PermanentCalendarComponent } from './components/permanent-calendar/permanent-calendar.component';
+import { FormatDatePipe } from './shared/pipes/format-date.pipe';
+import { WeatherComponent } from './components/weather/weather.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent  // Asegúrate de que AppComponent está aquí
+    TodoListComponent,
+    PermanentCalendarComponent,
+    FormatDatePipe,
+    WeatherComponent  // Asegúrate de que AppComponent está aquí
   ],
   imports: [
     BrowserModule,
@@ -29,8 +38,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     FlexLayoutModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [
+    MatNativeDateModule,
+  ],
   bootstrap: [AppComponent]  // Y que está siendo arrancado aquí
 })
 export class AppModule { }

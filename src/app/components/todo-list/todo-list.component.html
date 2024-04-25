@@ -5,9 +5,6 @@
   </header>
 
   <div fxLayout="row" fxFlex style="overflow: hidden">
-    <!-- Primer sidebar que se muestra/oculta, ajustado para cambiar de ancho -->
-    <!-- app.component.html -->
-    <!-- app.component.html -->
     <aside
       [ngStyle]="{ width: showSidebar ? '400px' : '48px' }"
       fxLayout="column"
@@ -46,7 +43,7 @@
               <mat-checkbox
                 [(ngModel)]="task.completed"
                 style="padding: 0 70px 0 0"
-                >{{ task.title }}</mat-checkbox
+                >{{ task.title }} - {{ task.date | formatDate}}</mat-checkbox
               >
               <button
                 mat-icon-button
@@ -68,14 +65,15 @@
       </mat-card>
     </main>
 
-    <!-- Segundo sidebar, actualmente vacío pero listo para usar -->
+    <!-- Segundo sidebar, calendario -->
     <aside
       *ngIf="showSecondSidebar"
       fxFlex="20"
       class="app-aside"
       fxLayout="column"
     >
-      <!-- Contenido adicional aquí si es necesario -->
+      <app-permanent-calendar></app-permanent-calendar>
+      <app-weather></app-weather>
     </aside>
   </div>
 
