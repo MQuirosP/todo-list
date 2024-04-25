@@ -28,6 +28,7 @@ export class WeatherComponent implements OnInit {
   loadWeather(city: string) {
     this.weatherService.getWeather(city).subscribe({
       next: (data) => {
+        console.log(data);
         this.weatherData = data;
         this.isLoading = false;
       },

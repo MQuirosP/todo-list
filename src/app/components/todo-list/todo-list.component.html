@@ -20,6 +20,7 @@
             <mat-list-item *ngFor="let task of tasks; let i = index">
               <mat-checkbox
                 [(ngModel)]="task.completed"
+                (checked)="editTask(i)"
                 style="padding: 0 70px 0 0"
                 >{{ task.title }} - {{ task.date | formatDate}}</mat-checkbox
               >

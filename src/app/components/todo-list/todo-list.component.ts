@@ -1,13 +1,17 @@
+import { transition } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { Task } from 'src/app/shared/interfaces';
+import { DataService } from 'src/app/shared/services/data.service';
 import { DateService } from 'src/app/shared/services/date.service';
+import { fadeAnimation } from 'src/app/shared/transition';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
+  animations: [fadeAnimation]
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   newTask: string | undefined;
@@ -17,11 +21,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
   selectedDate: Date | null = null;;
   private mediaSub: Subscription;
   private dateSubscription = new Subscription();
+  private subscriptions = new Subscription();
 
 
   constructor(
     private mediaObserver: MediaObserver,
-    private dateService: DateService, 
+    private dateService: DateService,
+    private dataService: DataService,
   ) {
     this.mediaSub = this.mediaObserver.asObservable().subscribe(this.handleMediaChange);
     this.dateSubscription.add(this.dateService.selectedDate.subscribe(date => {
@@ -34,6 +40,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.dateSubscription.add(this.dateService.selectedDate.subscribe(date => {
       this.selectedDate = date;
     }));
+    this.subscriptions.add(
+      this.dataService.appState$.subscribe(state => {
+        this.tasks = state.tasks;
+      })
+    );
+    this.dataService.loadAppState();
   }
 
   handleMediaChange = (changes: MediaChange[]) => {
@@ -45,6 +57,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   addTask() {
     if (this.newTask && this.selectedDate) {  // Ensure selectedDate is not null
       this.tasks.push({ title: this.newTask, completed: false, date: this.selectedDate });
+      this.dataService.saveAppState();
       this.newTask = ''; // Clear input after adding
     } else {
       // Handle the case where selectedDate is null
@@ -58,11 +71,17 @@ export class TodoListComponent implements OnInit, OnDestroy {
     const newTitle = prompt('Edit Task', task.title);
     if (newTitle !== null) {
       this.tasks[index].title = newTitle;
+      this.updateChanges();
     }
   }
 
   deleteTask(index: number) {
     this.tasks.splice(index, 1);
+    this.updateChanges();
+  }
+
+  updateChanges() {
+    this.dataService.saveAppState();
   }
 
   toggleSidebar() {

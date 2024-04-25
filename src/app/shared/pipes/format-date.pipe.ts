@@ -4,16 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'formatDate'
 })
 export class FormatDatePipe implements PipeTransform {
-
-  transform(value: Date | null): string {
+  transform(value: string | Date): string {
     if (!value) return '';
 
-    // Ejemplo de formato: 'MMM dd, yyyy'
-    return value.toLocaleDateString('sp-CR', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
+    // Intenta convertir el string a Date si no es una instancia de Date
+    const date = value instanceof Date ? value : new Date(value);
+    
+    // Usa toLocaleDateString con la configuración deseada
+    return date.toLocaleDateString('es-CR');  // Ajusta el 'locale' según necesites
   }
-
 }

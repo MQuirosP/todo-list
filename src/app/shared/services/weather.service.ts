@@ -23,7 +23,8 @@ export class WeatherService {
   }
 
   getWeather(city: string): Observable<any> {
-    const url = `${this.baseUrl}?q=${city}&appid=${this.apiKey}&units=metric`;
+    const url = `${this.baseUrl}?q=${city}&appid=${this.apiKey}&units=metric&lang=es`; // Añade `&lang=es` para español
     return this.http.get(url);
-  }
+}
+
 }

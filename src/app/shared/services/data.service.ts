@@ -1,24 +1,24 @@
-import { AppState, Task } from './../interfaces';
+// import { AppState, Task } from './../interfaces';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-// interface Task {
-//   title: string;
-//   completed: boolean;
-//   date: Date;
-// }
+interface Task {
+  title: string;
+  completed: boolean;
+  date: Date;
+}
 
-// interface AppState {
-//   location: string;
-//   tasks: Task[];
-// }
+interface AppState {
+  location: string;
+  tasks: Task[];
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private appState: AppState = {
-    location: 'London',  // Valor predeterminado
+    location: 'Puntarenas',  // Valor predeterminado
     tasks: []
   };
 

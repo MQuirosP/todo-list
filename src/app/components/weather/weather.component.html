@@ -1,9 +1,13 @@
-<!-- weather.component.html -->
+<!-- Agrega importaciones necesarias en tu módulo, como MatCardModule -->
 <div *ngIf="isLoading">Cargando datos del clima...</div>
 <div *ngIf="errorMessage">{{ errorMessage }}</div>
-<div *ngIf="weatherData && !isLoading">
-  <h3>Weather in {{ weatherData.name }}</h3>
-  <p>Temperature: {{ weatherData.main.temp }} °C</p>
-  <p>Weather: {{ weatherData.weather[0].main }}</p>
-  <p>Description: {{ weatherData.weather[0].description }}</p>
-</div>
+<mat-card *ngIf="weatherData && !isLoading" class="weather-card">
+  <mat-card-header>
+    <mat-card-title>Tiempo en {{ weatherData.name }}</mat-card-title>
+    <mat-card-subtitle>{{ weatherData.weather[0].description }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Temperatura: {{ weatherData.main.temp }} °C</p>
+    <p>Clima: {{ weatherData.weather[0].description }}</p>
+  </mat-card-content>
+</mat-card>
