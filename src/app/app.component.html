@@ -10,9 +10,10 @@
 
   <div fxLayout="row" fxFlex style="overflow: hidden">
     <aside
-    [style.width]="showSidebar ? (isMobile ? '80%' : '20%') : '3%'"
+    [style.width]="showSidebar ? (isMobile ? '80%' : '18%') : '4.5%'"
     class="app-aside"
-    fxLayout="column">
+    fxLayout="column"
+    >
     
       <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
         <mat-icon>menu</mat-icon>
@@ -32,7 +33,7 @@
     <!-- Segundo sidebar, calendario y clima -->
     <aside
       *ngIf="showSecondSidebar"
-      fxFlex="20%"
+      fxFlex="18%"
       class="app-aside"
       fxLayout="column"
     >

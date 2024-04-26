@@ -1,7 +1,8 @@
 .app-aside {
+  padding: 18px;
   background-color: #cccccc;
   transition: width 0.3s ease;
-  overflow: hidden;
+  overflow: auto;
   position: relative; 
 }
 
