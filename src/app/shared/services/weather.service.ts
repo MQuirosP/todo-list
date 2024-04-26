@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class WeatherService {
 
   private baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
-  private apiKey = environment.openWeatherMapApiKey  // Reemplaza con tu clave API real
-  private citySubject = new BehaviorSubject<string>('Barranca');  // Valor por defecto
+  private apiKey = environment.openWeatherMapApiKey  
+  private citySubject = new BehaviorSubject<string>(environment.defaultLocation);
   city$ = this.citySubject.asObservable();
   constructor(
     private http: HttpClient,
@@ -23,7 +23,7 @@ export class WeatherService {
   }
 
   getWeather(city: string): Observable<any> {
-    const url = `${this.baseUrl}?q=${city}&appid=${this.apiKey}&units=metric&lang=es`; // Añade `&lang=es` para español
+    const url = `${this.baseUrl}?q=${city}&appid=${this.apiKey}&units=metric&lang=es`;
     return this.http.get(url);
 }
 

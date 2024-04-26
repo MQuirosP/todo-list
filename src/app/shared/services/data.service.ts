@@ -1,17 +1,18 @@
 // import { AppState, Task } from './../interfaces';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AppState, Task } from '../interfaces';
 
-interface Task {
-  title: string;
-  completed: boolean;
-  date: Date;
-}
+// interface Task {
+//   title: string;
+//   completed: boolean;
+//   date: Date;
+// }
 
-interface AppState {
-  location: string;
-  tasks: Task[];
-}
+// interface AppState {
+//   location: string;
+//   tasks: Task[];
+// }
 
 @Injectable({
   providedIn: 'root'

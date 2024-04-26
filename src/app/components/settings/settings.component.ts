@@ -9,7 +9,7 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
-  currentLocation: string = 'Barranca';
+  currentLocation: string = 'Puntarenas, CR';
 
   constructor(
     private weatherService: WeatherService,
