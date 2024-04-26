@@ -1,5 +1,5 @@
 .app-aside {
-  background-color: #eeeeee;
+  background-color: #cccccc;
   transition: width 0.3s ease;
   overflow: hidden;
   position: relative; /* Asegura que el botón del menú pueda posicionarse absolutamente respecto a este contenedor */
