@@ -23,7 +23,7 @@
 }
 
 .app-main {
-  padding: 20px;
+  padding: 10px;
   overflow: visible; /* Asegura que no haya scroll en el contenedor principal */
   transition: width 0.3s ease;
 }

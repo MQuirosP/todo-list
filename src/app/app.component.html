@@ -1,20 +1,26 @@
 <!-- app.component.html -->
 <div class="app-container" fxLayout="column" style="min-height: 100vh">
-  <header fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="app-header">
+  <header
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="10px"
+    class="app-header"
+  >
     <h1><mat-icon>calendar_today</mat-icon>&nbsp;Organizador personal</h1>
     <!-- Espaciador para empujar el contenido al final -->
     <span fxFlex></span>
     <!-- Botón de login -->
-    <button mat-button >Login</button>
+    <button mat-button>Login</button>
   </header>
 
   <div fxLayout="row" fxFlex style="overflow: hidden">
     <aside
-    [style.width]="showSidebar ? (isMobile ? '80%' : '18%') : '4.5%'"
-    class="app-aside"
-    fxLayout="column"
+      [style.width]="
+        showSidebar ? '200px' : '50px'
+      "
+      class="app-aside"
+      fxLayout="column"
     >
-    
       <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
@@ -26,7 +32,7 @@
     </aside>
 
     <!-- Contenido principal -->
-    <div fxFlex [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" >
+    <div fxFlex [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
       <router-outlet #o="outlet"></router-outlet>
     </div>
 
