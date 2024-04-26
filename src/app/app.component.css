@@ -13,4 +13,12 @@
   z-index: 1000; /* Asegurar que el botón esté sobre otros elementos */
 }
 
+.mat-card-content {
+  max-height: 400px;  /* Ajusta según tus necesidades */
+  overflow-y: auto;   /* Habilita el desplazamiento vertical si el contenido es demasiado largo */
+}
+
+
+
+
 

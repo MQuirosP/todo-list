@@ -1,17 +1,14 @@
-import { transition } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 import { Task } from 'src/app/shared/interfaces';
 import { DataService } from 'src/app/shared/services/data.service';
 import { DateService } from 'src/app/shared/services/date.service';
-import { fadeAnimation } from 'src/app/shared/transition';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
-  animations: [fadeAnimation]
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   newTask: string | undefined;

@@ -1,45 +1,50 @@
-    <!-- Contenido principal -->
-    <main fxFlex="100" class="app-main">
-      <mat-card>
-        <mat-card-title>Tu lista de tareas</mat-card-title>
-        <mat-card-content>
-          <mat-form-field>
-            <mat-label>Agregar nueva tarea</mat-label>
-            <input
-              matInput
-              placeholder="Escribe una nueva tarea"
-              [(ngModel)]="newTask"
-              (keyup.enter)="addTask()"
-            />
-          </mat-form-field>
-          <button mat-raised-button color="primary" (click)="addTask()">
-            Agregar
-          </button>
+<!-- Contenido principal -->
+<main fxFlex="100" class="app-main">
+  <mat-card>
+    <mat-card-title>Tu lista de tareas</mat-card-title>
+    <mat-card-content>
+      <!-- Sección de entrada siempre visible -->
+      <mat-form-field class="mat-form-field">
+        <mat-label>Agregar nueva tarea</mat-label>
+        <input
+          matInput
+          placeholder="Escribe una nueva tarea"
+          [(ngModel)]="newTask"
+          (keyup.enter)="addTask()"
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTask()">
+        Agregar
+      </button>
 
-          <mat-list>
-            <mat-list-item *ngFor="let task of tasks; let i = index">
-              <mat-checkbox
-                [(ngModel)]="task.completed"
-                (checked)="editTask(i)"
-                style="padding: 0 70px 0 0"
-                >{{ task.title }} - {{ task.date | formatDate}}</mat-checkbox
-              >
-              <button
-                mat-icon-button
-                aria-label="Edit task"
-                (click)="editTask(i)"
-              >
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button
-                mat-icon-button
-                aria-label="Delete task"
-                (click)="deleteTask(i)"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-    </main>
+      <!-- Contenedor de la lista con scroll -->
+      <div class="task-list-container">
+        <mat-list>
+          <mat-list-item *ngFor="let task of tasks; let i = index">
+            <mat-checkbox
+              [(ngModel)]="task.completed"
+              (checked)="editTask(i)"
+              style="padding: 0 70px 0 0"
+            >
+              {{ task.title }} - {{ task.date | formatDate }}
+            </mat-checkbox>
+            <button
+              mat-icon-button
+              aria-label="Edit task"
+              (click)="editTask(i)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              aria-label="Delete task"
+              (click)="deleteTask(i)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</main>
