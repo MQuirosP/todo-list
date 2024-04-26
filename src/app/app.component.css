@@ -1,5 +1,6 @@
 .app-aside {
-  padding: 10px;
+  max-width: 250px;
+  padding: 5px 10px;
   background-color: #cccccc;
   transition: width 0.3s ease;
   overflow: auto;
