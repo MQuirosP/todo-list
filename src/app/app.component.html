@@ -13,15 +13,20 @@
     <button mat-button>Login</button>
   </header>
 
-  <div fxLayout="row" fxFlex style="overflow: hidden">
+  <div fxLayout="row" fxFlex>
     <aside
-      [style.width]="
-        showSidebar ? '200px' : '50px'
-      "
+      [ngStyle]="{
+        width: showSidebar ? '200px' : '50px'
+      }"
       class="app-aside"
       fxLayout="column"
     >
-      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+      <button
+        mat-icon-button
+        (click)="toggleSidebar()"
+        class="menu-button"
+        [ngStyle]="{ color: showSidebar ? 'darkgrey' : 'black' }"
+      >
         <mat-icon>menu</mat-icon>
       </button>
       <div *ngIf="showSidebar" fxLayout="column" fxLayoutAlign="start start">
@@ -42,6 +47,7 @@
       fxFlex="19%"
       class="app-aside"
       fxLayout="column"
+      style="overflow: hidden"
     >
       <app-permanent-calendar></app-permanent-calendar>
       <app-weather></app-weather>
