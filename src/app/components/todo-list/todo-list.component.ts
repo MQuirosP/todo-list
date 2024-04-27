@@ -15,34 +15,35 @@ export class TodoListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   showSidebar: boolean = true;
   showSecondSidebar: boolean = true;
-  selectedDate: Date | null = null;;
-  private mediaSub: Subscription;
-  private dateSubscription = new Subscription();
-  private subscriptions = new Subscription();
-
+  selectedDate: Date | null = null;
+  private subscriptions = new Subscription();  // Una sola instancia para manejar todas las suscripciones
 
   constructor(
     private mediaObserver: MediaObserver,
     private dateService: DateService,
     private dataService: DataService,
   ) {
-    this.mediaSub = this.mediaObserver.asObservable().subscribe(this.handleMediaChange);
-    this.dateSubscription.add(this.dateService.selectedDate.subscribe(date => {
-      this.selectedDate = date;
-    }));
+
   }
 
   ngOnInit() {
-    // Suscríbete al BehaviorSubject del servicio para inicializar selectedDate
-    this.dateSubscription.add(this.dateService.selectedDate.subscribe(date => {
-      this.selectedDate = date;
-    }));
+    // Suscripción a las tareas
     this.subscriptions.add(
       this.dataService.appState$.subscribe(state => {
         this.tasks = state.tasks;
       })
     );
     this.dataService.loadAppState();
+    // Suscriçion para detectar cambios en la pantalla
+    this.subscriptions.add(
+      this.mediaObserver.asObservable().subscribe(this.handleMediaChange)
+    );
+    // Suscripción para detectar cambios en la fecha
+    this.subscriptions.add(
+      this.dateService.selectedDate.subscribe(date => {
+        this.selectedDate = date;
+      })
+    );
   }
 
   handleMediaChange = (changes: MediaChange[]) => {
@@ -52,16 +53,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
   };
 
   addTask() {
-    if (this.newTask && this.selectedDate) {  // Ensure selectedDate is not null
+    if (this.newTask && this.selectedDate) {
       this.tasks.push({ title: this.newTask, completed: false, date: this.selectedDate });
       this.dataService.saveAppState();
-      this.newTask = ''; // Clear input after adding
+      this.newTask = '';
     } else {
-      // Handle the case where selectedDate is null
       console.error('No date selected. Please select a date before adding a task.');
     }
   }
-  
 
   editTask(index: number) {
     const task = this.tasks[index];
@@ -86,8 +85,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.mediaSub) {
-      this.mediaSub.unsubscribe();
-    }
+    // Desuscribirse de todas las suscripciones con una sola llamada
+    this.subscriptions.unsubscribe();
   }
 }
