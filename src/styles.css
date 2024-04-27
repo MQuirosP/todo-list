@@ -35,4 +35,40 @@
   overflow-x: auto;
 }
 
+.custom-calendar {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+.mat-calendar {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.custom-calendar .mat-calendar-body-selected {
+  background-color: #4884c0;
+  color: white;
+}
+
+.custom-calendar .mat-calendar-body-disabled {
+  color: #999;
+}
+
+.custom-calendar .my-special-day {
+  border: 2px solid red;
+  color: #d9534f;
+}
+
+.custom-calendar .mat-calendar-header {
+  background-color: #e3e3e3;
+  color: #333;
+  border-radius: 8px 8px 0 0;
+}
+
+.custom-calendar .mat-calendar-next-button,
+.custom-calendar .mat-calendar-previous-button {
+  color: #71a8df;
+}
+
 
