@@ -11,17 +11,17 @@ export class PermanentCalendarComponent {
   constructor(
     private dateService: DateService,
   ) {}
-  selectedDate: Date = new Date();  // Asegura que se inicializa con un valor no nulo.
+  selectedDate: Date = new Date();
 
   // Función para deshabilitar fechas anteriores a la actual
   myFilter = (date: Date | null): boolean => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Establece la hora a cero.
+    today.setHours(0, 0, 0, 0); 
     return date ? date >= today : false;
   };
 
   onSelect(date: Date | null): void {
-    if (date) {  // Verifica si la fecha no es nula antes de asignar.
+    if (date) {
       this.selectedDate = date;
       this.dateService.updateSelectedDate(date)
     }
