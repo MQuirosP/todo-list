@@ -10,7 +10,7 @@ export class FormatDatePipe implements PipeTransform {
     // Intenta convertir el string a Date si no es una instancia de Date
     const date = value instanceof Date ? value : new Date(value);
     
-    // Usa toLocaleDateString con la configuración deseada
-    return date.toLocaleDateString('es-CR');  // Ajusta el 'locale' según necesites
+    // Usa toLocaleDateString con el formato deseado
+    return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
 }
