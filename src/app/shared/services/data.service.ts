@@ -29,12 +29,10 @@ export class DataService {
   }
 
   saveAppState() {
-    // Aquí podrías serializar `this.appState` a JSON y guardar en localStorage o enviar a un servidor
     localStorage.setItem('appState', JSON.stringify(this.appState));
   }
 
   loadAppState() {
-    // Carga el estado de la aplicación desde localStorage o un servidor
     const state = localStorage.getItem('appState');
     if (state) {
       this.appState = JSON.parse(state);
